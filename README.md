@@ -31,6 +31,36 @@ The goal is to understand customer sentiment, identify recurring complaints and 
   - User Interface and Experience
   - Feature Requests
 
+## Task 2: Sentiment and Thematic Analysis Output
+
+The Task 2 pipeline is implemented in:
+
+`src/analyze_reviews.py`
+
+It reads the cleaned dataset from:
+
+`data/processed/cleaned_reviews.csv`
+
+and generates an analyzed dataset locally at:
+
+`data/processed/analyzed_reviews.csv`
+
+The analyzed dataset includes:
+
+- review_id
+- review_text
+- sentiment_label
+- sentiment_score
+- identified_theme
+- rating
+- date
+- bank
+- source
+
+The pipeline was designed to process the full cleaned review dataset, targeting at least 400 reviews per bank and at least 1,200 reviews overall.
+
+Data files are excluded from GitHub using `.gitignore`, so the generated CSV is documented but not committed.
+
 ### Task 3: PostgreSQL Database
 - Created PostgreSQL database named `bank_reviews`.
 - Designed two tables:
