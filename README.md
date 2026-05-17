@@ -43,6 +43,24 @@ The goal is to understand customer sentiment, identify recurring complaints and 
 - Produced bank-specific insights and recommendations.
 - Prepared a final insight report.
 
+## Review Collection Summary
+
+Reviews were collected from the Google Play Store for three Ethiopian banking applications: CBE, BOA, and Dashen Bank.
+
+Target collection size:
+- CBE: 400+ reviews
+- BOA: 400+ reviews
+- Dashen Bank: 400+ reviews
+- Total target: 1,200+ reviews
+
+The scraping was performed in May 2026 using the `google-play-scraper` package. Reviews were collected using the newest available reviews returned by the scraper.
+
+Scraping constraints:
+- Google Play review availability may vary by app.
+- The exact date range depends on the reviews returned by Google Play at scraping time.
+- If fewer reviews are returned for an app, the scraper can be rerun with a larger count parameter.
+- Raw CSV files are excluded from GitHub using `.gitignore` to avoid committing data files.
+
 ## Project Structure
 
 ```text

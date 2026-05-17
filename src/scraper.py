@@ -7,27 +7,34 @@ APPS = {
     "Dashen": "com.dashen.dashensuperapp",
 }
 
-def scrape_reviews(app_id, bank, count=500):
-    result, _ = reviews(
-        app_id,
-        lang="en",
-        country="et",
-        sort=Sort.NEWEST,
-        count=count,
-    )
+def scrape_reviews(app_id, bank_name, count=500):
 
-    data = []
-    for r in result:
-        data.append({
-            "review_id": r.get("reviewId"),
-            "review": r.get("content"),
-            "rating": r.get("score"),
-            "date": r.get("at"),
-            "bank": bank,
-            "source": "Google Play"
-        })
+    try:
+        result, _ = reviews(
+            app_id,
+            lang="en",
+            country="et",
+            sort=Sort.NEWEST,
+            count=count
+        )
 
-    return pd.DataFrame(data)
+        reviews_data = []
+
+        for r in result:
+            reviews_data.append({
+                "review_id": r.get("reviewId"),
+                "review": r.get("content"),
+                "rating": r.get("score"),
+                "date": r.get("at"),
+                "bank": bank_name,
+                "source": "Google Play"
+            })
+
+        return pd.DataFrame(reviews_data)
+
+    except Exception as e:
+        print(f"Error scraping reviews for {bank_name}: {e}")
+        return pd.DataFrame()
 
 
 def clean_reviews(df):
@@ -56,9 +63,17 @@ def main():
 
     combined = pd.concat(all_reviews, ignore_index=True)
     cleaned = clean_reviews(combined)
+    cleaned_df = cleaned
+    try:
+        cleaned_df.to_csv(
+        "data/processed/cleaned_reviews.csv",
+        index=False
+        )
 
-    cleaned.to_csv("data/processed/cleaned_reviews.csv", index=False)
-    print("Saved to data/processed/cleaned_reviews.csv")
+        print("CSV saved successfully!")
+
+    except Exception as e:
+        print(f"Error saving cleaned dataset: {e}")
 
 
 if __name__ == "__main__":

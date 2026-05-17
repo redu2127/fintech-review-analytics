@@ -73,6 +73,21 @@ The analysis included:
 
 ---
 
+## Sentiment and Thematic Analysis Scale
+
+The sentiment and thematic analysis pipeline was applied to the cleaned review dataset generated from Task 1. The project targeted at least 400 reviews per bank, giving a minimum target of 1,200 reviews across CBE, BOA, and Dashen Bank.
+
+Each review was processed to generate:
+- sentiment_label
+- sentiment_score
+- identified_theme
+
+The final analyzed output was saved locally as:
+
+`data/processed/analyzed_reviews.csv`
+
+This file was not committed to GitHub because data files are excluded through `.gitignore`.
+
 # Ethical Considerations
 
 - Only publicly available review data was used.
